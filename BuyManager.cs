@@ -29,10 +29,10 @@ namespace CTDominion
                     break;
                 case "Ryze":
                     ItemsToBuy.Add(new CItem(3020, 1100, false)); // Sorcer Bots [1]
-                    ItemsToBuy.Add(new CItem(3073, 720, false));  // Tear of The Goddess
+                    ItemsToBuy.Add(new CItem(3073, 720, false));  // Tear of the Goddess [2]
+                    ItemsToBuy.Add(new CItem(3029, 2790, false)); // ROD [3]
                     ItemsToBuy.Add(new CItem(1058, 1250, false)); // Staf1250
                     ItemsToBuy.Add(new CItem(3090, 2250, false)); // Wooglets (Hat)[2]
-                    ItemsToBuy.Add(new CItem(3029, 2790, false)); // ROD [3]
                     ItemsToBuy.Add(new CItem(3135, 2500, false)); // Void Staff [4]
                     ItemsToBuy.Add(new CItem(3165, 2300, false)); // Morello [5]
                     ItemsToBuy.Add(new CItem(3116, 3000, false)); // Rylais [6]
