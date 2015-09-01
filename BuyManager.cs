@@ -28,7 +28,6 @@ namespace CTDominion
                     ItemsToBuy.Add(new CItem(3116, 3000, false)); // Rylais [6]
                     break;
                 case "Ryze":
-                    ItemsToBuy.Add(new CItem(3073, 720, false));  // Tear of The Goddess
                     ItemsToBuy.Add(new CItem(3020, 1100, false)); // Sorcer Bots [1]
                     ItemsToBuy.Add(new CItem(1058, 1250, false)); // Staf1250
                     ItemsToBuy.Add(new CItem(3090, 2250, false)); // Wooglets (Hat)[2]
