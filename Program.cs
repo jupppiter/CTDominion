@@ -42,7 +42,7 @@ namespace CTDominion
 
 
 	    if (Player.IsDead)
-		Player.Spellbook.CastSpell(SpellSlot.Summoner1 = 4);
+		Items.UseItem(3345);
 
 //            if (Player.IsDead)
 //		Game.PrintChat("I'm Alive!");
