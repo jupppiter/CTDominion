@@ -89,7 +89,7 @@ namespace CTDominion
         {
             if (Player.Distance(TEAM_POS) > 100 || Player.CountEnemiesInRange(100) < 1)
             {
-           	Heroes.Player.Spellbook.CastSpell(SpellSlot.Recall);
+//           	Heroes.Player.Spellbook.CastSpell(SpellSlot.Recall);
             }
             else
             {
