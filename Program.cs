@@ -87,7 +87,7 @@ namespace CTDominion
         static int MaxRange = 1200;
         public static void MoveBase()
         {
-            if (Player.Distance(TEAM_POS) > 100 || Player.CountEnemiesInRange(900) < 1)
+            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(900) < 1)
             {
            	Player.Spellbook.CastSpell(SpellSlot.Recall);
             }
