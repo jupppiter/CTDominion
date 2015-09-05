@@ -47,7 +47,7 @@ namespace CTDominion
 
 
 //	    if (Player.IsDead && Items.CanUseItem(Soul_Anchor_Trinket))
-	    if (Player.IsDead && Items.CanUseItem(3345))
+	    if (Player.IsDead)
 		Items.UseItem(3345);
 
 //            if (Player.IsDead)
