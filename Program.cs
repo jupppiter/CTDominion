@@ -55,7 +55,7 @@ namespace CTDominion
             {
 
 //                if (Player.Health < 300 && Player.CountEnemiesInRange(1200) > 3)
-                if (Player.HealthPercent <= 20 || Player.ManaPercent <= 10 && Player.CountEnemiesInRange(900) > 3)
+                if (Player.HealthPercent <= 20 || Player.ManaPercent <= 10 && Player.CountEnemiesInRange(1200) > 3)
                 {
                     MoveBase();
 //                    Game.PrintChat("Home!");
@@ -87,7 +87,7 @@ namespace CTDominion
         static int MaxRange = 1200;
         public static void MoveBase()
         {
-            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(900) < 1)
+            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1200) < 1)
             {
            	Player.Spellbook.CastSpell(SpellSlot.Recall);
             }
