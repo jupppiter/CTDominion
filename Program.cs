@@ -91,6 +91,12 @@ namespace CTDominion
             {
                 Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
                 Orb.SetOrbwalkingPoint(TEAM_POS);
+
+                if (Player.CountEnemiesInRange(100) < 1)
+                {
+		    Heroes.Player.Spellbook.CastSpell(SpellSlot.Recall);
+                }
+
             }
 
         } //MoveBase
