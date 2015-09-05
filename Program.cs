@@ -47,7 +47,7 @@ namespace CTDominion
 
 
 //	    if (Player.IsDead && Items.CanUseItem(Soul_Anchor_Trinket))
-	    if (Player.IsDead && Items.HasItem(3345))
+	    if (Player.IsDead && Items.HasItem(3345) && Items.CanUseItem(3345))
 	    {	
 		Items.UseItem(3345);
 		Game.PrintChat("I'm Alive!");
