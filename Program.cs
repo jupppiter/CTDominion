@@ -34,6 +34,11 @@ namespace CTDominion
             Game.OnUpdate += Game_OnUpdate;
         }
 
+
+	static Items.Item
+	Soul_Anchor_Trinket = new Items.Item(3345, 0);
+
+
         static void Game_OnUpdate(EventArgs args)
         {
             SkillManager.AutoLevelUp();
@@ -42,7 +47,7 @@ namespace CTDominion
 
 
 	    if (Player.IsDead)
-		Items.UseItem(3345);
+		Items.UseItem(Soul_Anchor_Trinket);
 
 //            if (Player.IsDead)
 //		Game.PrintChat("I'm Alive!");
