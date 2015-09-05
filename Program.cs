@@ -55,7 +55,7 @@ namespace CTDominion
                 else
 
 	   {
-		Game.PrintChat("Not ready!");
+//		Game.PrintChat("Not ready!");
 
            }	
 
