@@ -83,6 +83,12 @@ namespace CTDominion
 
         static int Range = 900;
         static int MaxRange = 1200;
+
+
+
+var closestAllyBuff = HealingBuffs.AllyBuffs.FirstOrDefault(ab => ab.IsVisible && ab.IsValid);
+
+
         public static void MoveBase()
         {
             if (Player.Distance(TEAM_POS) > 100)
@@ -90,28 +96,6 @@ namespace CTDominion
                 Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
                 Orb.SetOrbwalkingPoint(TEAM_POS);
             }
-
-
-
-
-
-
-
-
-          var closestAllyBuff = HealingBuffs.AllyBuffs.FirstOrDefault(ab => ab.IsVisible && ab.IsValid);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         } //MoveBase
 
