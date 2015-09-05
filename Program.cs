@@ -39,8 +39,16 @@ namespace CTDominion
             SkillManager.AutoLevelUp();
             if (Player.IsDead || Player.Distance(TEAM_POS) < 500)
                 BuyManager.Buy();
-            if (Player.IsDead)
-		Game.PrintChat("I'm Alive!");
+
+
+	    if (Player.IsDead && Heroes.Player.HasBuff("Soul_Anchor_Trinket"))
+                    {
+                        Heroes.Player.Spellbook.CastSpell(SpellSlot.Soul_Anchor_Trinket);
+                    }
+
+//            if (Player.IsDead)
+//		Game.PrintChat("I'm Alive!");
+
 
             if (!Player.IsDead)
             {
