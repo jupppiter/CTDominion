@@ -50,7 +50,7 @@ namespace CTDominion
 	    if (Player.IsDead && Items.HasItem(3345))
 	    {	
 		Items.UseItem(3345);
-		Game.PrintChat("I'm Alive!");
+//		Game.PrintChat("I'm Alive!");
 	    }	
                 else
 
