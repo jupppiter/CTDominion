@@ -58,7 +58,7 @@ namespace CTDominion
                 if (Player.HealthPercent <= 20 || Player.CountEnemiesInRange(900) > 3)
                 {
                     MoveBase();
-                    Game.PrintChat("Home!");
+//                    Game.PrintChat("Home!");
                 }
                 else
                 {
@@ -97,6 +97,7 @@ namespace CTDominion
 		    Heroes.Player.Spellbook.CastSpell(SpellSlot.Recall);
                 }
 
+                BuyManager.Buy();
             }
 
         } //MoveBase
