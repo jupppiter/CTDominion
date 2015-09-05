@@ -43,7 +43,7 @@ namespace CTDominion
 
 	    if (Player.IsDead)
                     {
-		Player.Spellbook.CastSpell(SpellSlot.Summoner1 = 4);
+		Player.Spellbook.CastSpell(SpellSlot.Recall);
                     }
 
 //            if (Player.IsDead)
