@@ -42,9 +42,7 @@ namespace CTDominion
 
 
 	    if (Player.IsDead)
-                    {
 		Player.Spellbook.CastSpell(SpellSlot.Recall);
-                    }
 
 //            if (Player.IsDead)
 //		Game.PrintChat("I'm Alive!");
