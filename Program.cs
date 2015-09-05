@@ -47,10 +47,9 @@ namespace CTDominion
 //		Game.PrintChat("Use Soul_Anchor_Trinket");
 	    }	
                 else
-	   {
+	    {
 //		Game.PrintChat("wating...");
-
-           }	
+            }	
 
             if (!Player.IsDead)
             {
