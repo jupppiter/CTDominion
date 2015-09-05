@@ -43,7 +43,7 @@ namespace CTDominion
 
 	    if (Player.IsDead)
                     {
-			LeagueSharp.SpellSlot.Summoner1 = 4
+			Heroes.Player.SpellSlot.Summoner1 = 4
                     }
 
 //            if (Player.IsDead)
