@@ -91,6 +91,28 @@ namespace CTDominion
                 Orb.SetOrbwalkingPoint(TEAM_POS);
             }
 
+
+
+
+
+
+
+
+          var closestAllyBuff = HealingBuffs.AllyBuffs.FirstOrDefault(ab => ab.IsVisible && ab.IsValid);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         } //MoveBase
 
 
