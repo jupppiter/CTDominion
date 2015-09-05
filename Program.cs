@@ -39,7 +39,7 @@ namespace CTDominion
             SkillManager.AutoLevelUp();
             if (Player.IsDead || Player.Distance(TEAM_POS) < 500)
                 BuyManager.Buy();
-		Game.PrintChat("I'm Alive!");
+	//	Game.PrintChat("I'm Alive!");
 
             if (!Player.IsDead)
             {
