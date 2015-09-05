@@ -41,9 +41,9 @@ namespace CTDominion
                 BuyManager.Buy();
 
 
-	    if (Player.IsDead && Heroes.Player.HasBuff("Soul_Anchor_Trinket"))
+	    if (Player.IsDead)
                     {
-                        Heroes.Player.Spellbook.CastSpell(SpellSlot.Soul_Anchor_Trinket);
+			LeagueSharp.SpellSlot.Summoner1 = 4
                     }
 
 //            if (Player.IsDead)
