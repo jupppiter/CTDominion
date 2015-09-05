@@ -35,8 +35,8 @@ namespace CTDominion
         }
 
 
-	static Items.Item
-	Soul_Anchor_Trinket = new Items.Item(3345, 0);
+//	static Items.Item
+//	Soul_Anchor_Trinket = new Items.Item(3345, 0);
 
 
         static void Game_OnUpdate(EventArgs args)
