@@ -46,7 +46,7 @@ namespace CTDominion
                 BuyManager.Buy();
 
 
-	    if (Player.IsDead)
+	    if (Player.IsDead && Items.CanUseItem(Soul_Anchor_Trinket))
 		Items.UseItem(3345);
 
 //            if (Player.IsDead)
