@@ -87,18 +87,16 @@ namespace CTDominion
         static int MaxRange = 1200;
         public static void MoveBase()
         {
-            if (Player.Distance(TEAM_POS) > 100)
+            if (Player.Distance(TEAM_POS) > 100 || Player.CountEnemiesInRange(100) < 1)
+            {
+           	Heroes.Player.Spellbook.CastSpell(SpellSlot.Recall);
+            }
+            else
             {
                 Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
                 Orb.SetOrbwalkingPoint(TEAM_POS);
-
-                if (Player.CountEnemiesInRange(100) < 1)
-                {
-		    Heroes.Player.Spellbook.CastSpell(SpellSlot.Recall);
-                }
-
-                BuyManager.Buy();
             }
+                BuyManager.Buy();
 
         } //MoveBase
 
