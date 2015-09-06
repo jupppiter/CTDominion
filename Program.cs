@@ -34,6 +34,10 @@ namespace CTDominion
         }
 
         static void Game_OnUpdate(EventArgs args)
+
+var closestEnemyBuff = HealingBuffs.EnemyBuffs.FirstOrDefault(eb => eb.IsVisible && eb.IsValid && eb.Position.Distance(Heroes.Player.Position) < 800 && (eb.Position.CountEnemiesInRange(600) == 0 || eb.Position.CountEnemiesInRange(600) < eb.Position.CountAlliesInRange(600)));
+var closestAllyBuff = HealingBuffs.AllyBuffs.FirstOrDefault(ab => ab.IsVisible && ab.IsValid);
+
         {
             SkillManager.AutoLevelUp();
             if (Player.IsDead || Player.Distance(TEAM_POS) < 500)
