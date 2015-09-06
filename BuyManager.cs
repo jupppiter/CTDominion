@@ -37,6 +37,15 @@ namespace CTDominion
                     ItemsToBuy.Add(new CItem(3165, 2300, false)); // Morello [5]
                     ItemsToBuy.Add(new CItem(3116, 3000, false)); // Rylais [6]
                     break;
+                case "Garen":
+                    ItemsToBuy.Add(new CItem(3047, 1000, false));  // Ninja Tabi[1]
+                    ItemsToBuy.Add(new CItem(1043, 1100, false)); // Recurve Bow
+                    ItemsToBuy.Add(new CItem(3091, 1500, false)); // Wit's End[2]
+                    ItemsToBuy.Add(new CItem(3153, 3000, false)); // BOTKR[3]
+                    ItemsToBuy.Add(new CItem(3022, 3300, false)); // Frozen Mallets[4]
+                    ItemsToBuy.Add(new CItem(3110, 2450, false)); // Frozen Heart[5]
+                    ItemsToBuy.Add(new CItem(3065, 1000, false)); // Spirit Visage
+                    break;
                 case "Warwick":
                     ItemsToBuy.Add(new CItem(3047, 1000, false));  // Ninja Tabi[1]
                     ItemsToBuy.Add(new CItem(1043, 1100, false)); // Recurve Bow
