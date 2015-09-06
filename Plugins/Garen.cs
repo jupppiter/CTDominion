@@ -54,7 +54,7 @@ namespace CTDominion.Plugins
                 }
                 if (R.IsReady() && Target.IsValidTarget(R.Range))
                 {
-                    R.Cast(Target.Position);
+                    R.Cast(Target);
                 }
             }
             else
