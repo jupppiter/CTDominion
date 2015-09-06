@@ -185,16 +185,23 @@ public static class Heroes
 
         {
 //            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1500) < 1 && Minions.EnemyMinions.Any(m => m.Distance(Player) < 100))
-            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1500) < 1)
+//            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1500) == 0)
 		// recall if no enemy near and minions
-            {
-           	Player.Spellbook.CastSpell(SpellSlot.Recall);
-            }
-            else
-            {
-                Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
-                Orb.SetOrbwalkingPoint(TEAM_POS);
-            }
+//            {
+//           	Player.Spellbook.CastSpell(SpellSlot.Recall);
+//            }
+//            else
+//            {
+
+//                Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
+//                Orb.SetOrbwalkingPoint(TEAM_POS);
+
+//if (Heroes.Player.Position.Distance(buffPos) <= 800 && (Heroes.Player.CountEnemiesInRange(800) == 0 || Heroes.Player.CountEnemiesInRange(800) < Heroes.Player.CountAlliesInRange(800)))
+//            {
+                Orb.SetOrbwalkingPoint(buffPos);
+//                return true;
+//            }
+//            }
 
         } //MoveBase
 
