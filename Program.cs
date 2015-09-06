@@ -52,16 +52,13 @@ namespace CTDominion
 
             if (!Player.IsDead)
             {
-
-//                if (Player.HealthPercent <= 30 || Player.ManaPercent <= 20 && Player.CountEnemiesInRange(1200) > 2)
-                if (Player.HealthPercent > 30)
+                if (Player.HealthPercent <= 30 || Player.ManaPercent <= 20 && Player.CountEnemiesInRange(1200) > 2)
                 {
                     MoveBase();
 //                    Game.PrintChat("Home!");
                 }
                 else
                 {
-//                    if (Player.CountEnemiesInRange(Range) < 3 && !Turrets.EnemyTurrets.Any(t => t.Distance(Player) < 950))
                     if (Player.CountEnemiesInRange(Range) < 3)
                     {
                         LeagueSharp.Common.Utility.DelayAction.Add(500, PathWalker.WalkAndFight);
@@ -79,104 +76,7 @@ namespace CTDominion
 
             }// Dead
 
-
         } //OnUpdate
-
-
-
-//jupppiter:
-    public static class HealingBuffs
-    {
-        private static List<GameObject> _healingBuffs;
-        private static int LastUpdate = 0;
-
-        public static List<GameObject> AllyBuffs
-        {
-            get { return _healingBuffs.FindAll(hb => hb.IsValid && LeagueSharp.Common.Geometry.Distance(hb.Position, HeadQuarters.AllyHQ.Position) < 5400).OrderBy(buff => buff.Position.Distance(Player.Position)).ToList(); }
-        }
-
-        public static List<GameObject> EnemyBuffs
-        {
-            get { return _healingBuffs.FindAll(hb => hb.IsValid && LeagueSharp.Common.Geometry.Distance(hb.Position, HeadQuarters.AllyHQ.Position) > 5400); }
-        }
-
-        public static void Load()
-        {
-            _healingBuffs = ObjectManager.Get<GameObject>().Where(h=>h.Name.Contains("healingBuff")).ToList();
-            GameObject.OnCreate += OnCreate;
-            GameObject.OnDelete += OnDelete;
-            Game.OnUpdate += UpdateBuffs;
-        }
-
-        private static void UpdateBuffs(EventArgs args)
-        {
-            if (Environment.TickCount > LastUpdate + 1000)
-            {
-                foreach (var buff in _healingBuffs)
-                {
-                    if (Player.ServerPosition.Distance(buff.Position) < 80) _healingBuffs.Remove(buff);
-                }
-                LastUpdate = Environment.TickCount;
-            }
-        }
-
-        private static void OnCreate(GameObject sender, EventArgs args)
-        {
-            if (sender.Name.Contains("healingBuff"))
-            {
-                _healingBuffs.Add(sender);
-            }
-        }
-
-        private static void OnDelete(GameObject sender, EventArgs args)
-        {
-            var iList = _healingBuffs.Where(buff => buff.NetworkId == sender.NetworkId);
-            foreach (var i in iList)
-            {
-                _healingBuffs.Remove(i);
-            }
-        }
-    }
-
- public static class HeadQuarters
-    {
-        public static Obj_HQ AllyHQ
-        {
-            get { return ObjectManager.Get<Obj_HQ>().FirstOrDefault(hq => hq.IsAlly); }
-        }
-        public static Obj_HQ EnemyHQ
-        {
-            get { return ObjectManager.Get<Obj_HQ>().FirstOrDefault(hq => hq.IsEnemy); }
-        }
-    }
-
-public static class Heroes
-    {
-        private static List<Obj_AI_Hero> _heroes;
-
-        public static Obj_AI_Hero Player = ObjectManager.Player;
-
-        /// <summary>
-        /// Ally Heroes, excluding the player
-        /// </summary>
-        public static List<Obj_AI_Hero> AllyHeroes
-        {
-            get { return _heroes.FindAll(h => h.IsValid<Obj_AI_Hero>() && h.IsAlly); }
-        }
-
-        public static List<Obj_AI_Hero> EnemyHeroes
-        {
-            get { return _heroes.FindAll(h => h.IsValid<Obj_AI_Hero>() && h.IsEnemy); }
-        }
-
-        public static void Load()
-        {
-            Player = ObjectManager.Player;
-            _heroes = ObjectManager.Get<Obj_AI_Hero>().Where(h=>!h.IsMe).ToList();
-        }
-    }
-
-//jupppiter.
 
 
         static int Range = 900;
@@ -184,31 +84,19 @@ public static class Heroes
         public static void MoveBase()
 
         {
-//            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1500) < 1 && Minions.EnemyMinions.Any(m => m.Distance(Player) < 100))
-//            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1500) == 0)
-		// recall if no enemy near and minions
-//            {
-//           	Player.Spellbook.CastSpell(SpellSlot.Recall);
-//            }
-//            else
-//            {
+            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1600) == 0)
+		// recall if no enemy near
+            {
+           	Player.Spellbook.CastSpell(SpellSlot.Recall);
+            }
+            else
+            {
 
-//                Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
-//                Orb.SetOrbwalkingPoint(TEAM_POS);
-
-//if (Heroes.Player.Position.Distance(buffPos) <= 800 && (Heroes.Player.CountEnemiesInRange(800) == 0 || Heroes.Player.CountEnemiesInRange(800) < Heroes.Player.CountAlliesInRange(800)))
-//            {
-
- var closestEnemyBuff = HealingBuffs.EnemyBuffs.FirstOrDefault(eb => eb.IsVisible && eb.IsValid && eb.Position.Distance(Player.Position) < 800 && (eb.Position.CountEnemiesInRange(600) == 0 || eb.Position.CountEnemiesInRange(600) < eb.Position.CountAlliesInRange(600)));
- var closestAllyBuff = HealingBuffs.AllyBuffs.FirstOrDefault(ab => ab.IsVisible && ab.IsValid);
- var buffPos = closestEnemyBuff != null ? closestEnemyBuff.Position.Randomize(0, 15) : closestAllyBuff.Position.Randomize(0,15);
-                Orb.SetOrbwalkingPoint(buffPos);
-//                return true;
-//            }
-//            }
+                Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
+                Orb.SetOrbwalkingPoint(TEAM_POS);
+            }
 
         } //MoveBase
-
 
     }
 
