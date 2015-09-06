@@ -40,6 +40,15 @@ namespace CTDominion
 
         static void Game_OnUpdate(EventArgs args)
         {
+
+
+            //Turrets
+            AllTurrets = ObjectManager.Get<Obj_AI_Turret>().ToList();
+            AllyTurrets = AllTurrets.FindAll(turret => turret.IsAlly).ToList();
+            EnemyTurrets = AllTurrets.FindAll(turret => !turret.IsAlly).ToList();
+
+
+
             SkillManager.AutoLevelUp();
             if (Player.IsDead || Player.Distance(TEAM_POS) < 500)
                 BuyManager.Buy();
