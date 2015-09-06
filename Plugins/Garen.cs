@@ -37,7 +37,7 @@ namespace CTDominion.Plugins
                 Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
                 Orb.SetOrbwalkingPoint(TEAM_POS);
             }
-            else if (Target != null && Target.IsValidTarget(550))
+            else if (Target != null && Target.IsValidTarget(400))
             {
 
                 if (Q.IsReady() && Target.IsValidTarget(Q.Range))
@@ -52,7 +52,7 @@ namespace CTDominion.Plugins
                 {
                     E.Cast(Target.Position);
                 }
-                if (R.IsReady() && R.IsInRange(Target))
+                if (R.IsReady() && Target.IsValidTarget(R.Range))
                 {
                     R.Cast(Target);
                 }
