@@ -20,7 +20,7 @@ namespace CTDominion.Plugins
         {
             Q = new Spell(SpellSlot.Q);
             W = new Spell(SpellSlot.W);
-            E = new Spell(SpellSlot.E, 165);
+            E = new Spell(SpellSlot.E, 325);
             R = new Spell(SpellSlot.R, 400);
         }
 
@@ -30,22 +30,31 @@ namespace CTDominion.Plugins
             var Target = TargetSelector.GetTarget(600, TargetSelector.DamageType.Magical);
 
             // Chase if not in range
-            if (Target != null && Target.IsValid)
+            bool AnySpellReady = Q.IsReady() || W.IsReady() || R.IsReady();
+
+            if (!AnySpellReady)
+            {
+                Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
+                Orb.SetOrbwalkingPoint(TEAM_POS);
+            }
+            else if (Target != null && Target.IsValidTarget(550))
             {
 
-                if (Target != null && W.IsReady())
+                if (Q.IsReady() && Target.IsValidTarget(Q.Range))
+                {
+                    Q.Cast(Target);
+                }
+                if (W.IsReady())
                 {
                     W.Cast();
                 }
-
-                if (Target != null && R.IsReady() && R.IsInRange(Target))
+                if (E.IsReady() && Target.IsValidTarget(W.Range))
                 {
-                    R.Cast(Target);
+                    E.Cast(Target.Position);
                 }
-
-                if (Target != null && Q.IsReady() && Q.IsInRange(Target))
+                if (R.IsReady() && Target.IsValidTarget(R.Range))
                 {
-                    Q.Cast(Target);
+                    R.Cast(Target.Position);
                 }
             }
             else
