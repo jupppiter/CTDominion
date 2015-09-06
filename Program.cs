@@ -124,6 +124,85 @@ namespace CTDominion
         }
 
     }
+
+
+public static class Turrets
+    {
+        private static List<Obj_AI_Turret> _turrets;
+
+        public static List<Obj_AI_Turret> AllyTurrets
+        {
+            get { return _turrets.FindAll(t => t.IsValid<Obj_AI_Turret>() && !t.IsDead && t.IsAlly && !t.Name.ToLower().Contains("shrine")); }
+        }
+
+        public static List<Obj_AI_Turret> EnemyTurrets
+        {
+            get { return _turrets.FindAll(t => t.IsValid<Obj_AI_Turret>() && !t.IsDead && t.IsEnemy && !t.Name.ToLower().Contains("shrine")); }
+        }
+
+        public static Obj_AI_Turret ClosestEnemyTurret
+        {
+            get { return EnemyTurrets.OrderBy(t => t.Distance(Heroes.Player)).FirstOrDefault(); }
+        }
+
+        public static void Load()
+        {
+            _turrets = ObjectManager.Get<Obj_AI_Turret>().ToList();
+            Obj_AI_Turret.OnCreate += OnCreate;
+            Obj_AI_Turret.OnDelete += OnDelete;
+        }
+
+        private static void OnCreate(GameObject sender, EventArgs args)
+        {
+            if (sender.IsValid<Obj_AI_Turret>()) _turrets.Add((Obj_AI_Turret)sender);
+        }
+
+        private static void OnDelete(GameObject sender, EventArgs args)
+        {
+            var iList = _turrets.Where(turret => turret.NetworkId == sender.NetworkId);
+            foreach (var i in iList)
+            {
+                _turrets.Remove(i);
+            }
+        }
+    }
+
+
+public static class HealingBuffs
+    {
+        private static List<GameObject> _healingBuffs;
+        private static int LastUpdate = 0;
+
+        public static List<GameObject> AllyBuffs
+        {
+            get { return _healingBuffs.FindAll(hb => hb.IsValid && LeagueSharp.Common.Geometry.Distance(hb.Position, HeadQuarters.AllyHQ.Position) < 5400).OrderBy(buff => buff.Position.Distance(Heroes.Player.Position)).ToList(); }
+        }
+
+        public static List<GameObject> EnemyBuffs
+        {
+            get { return _healingBuffs.FindAll(hb => hb.IsValid && LeagueSharp.Common.Geometry.Distance(hb.Position, HeadQuarters.AllyHQ.Position) > 5400); }
+        }
+
+        public static void Load()
+        {
+            _healingBuffs = ObjectManager.Get<GameObject>().Where(h=>h.Name.Contains("healingBuff")).ToList();
+            GameObject.OnCreate += OnCreate;
+            GameObject.OnDelete += OnDelete;
+            Game.OnUpdate += UpdateBuffs;
+        }
+
+        private static void UpdateBuffs(EventArgs args)
+        {
+            if (Environment.TickCount > LastUpdate + 1000)
+            {
+                foreach (var buff in _healingBuffs)
+                {
+                    if (Heroes.Player.ServerPosition.Distance(buff.Position) < 80) _healingBuffs.Remove(buff);
+                }
+                LastUpdate = Environment.TickCount;
+            }
+        }
+
 //jupppiter.
 
         static int Range = 900;
