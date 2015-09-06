@@ -85,7 +85,7 @@ namespace CTDominion
         public static void MoveBase()
 
         {
-            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1600) == 0)
+            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1800) == 0)
 		// recall if no enemy near
             {
            	Player.Spellbook.CastSpell(SpellSlot.Recall);
