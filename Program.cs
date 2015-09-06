@@ -53,8 +53,8 @@ namespace CTDominion
             if (!Player.IsDead)
             {
 
-//                if (Player.Health < 300 && Player.CountEnemiesInRange(1200) > 3)
-                if (Player.HealthPercent <= 30 || Player.ManaPercent <= 20 && Player.CountEnemiesInRange(1200) > 2)
+//                if (Player.HealthPercent <= 30 || Player.ManaPercent <= 20 && Player.CountEnemiesInRange(1200) > 2)
+                if (Player.HealthPercent > 30)
                 {
                     MoveBase();
 //                    Game.PrintChat("Home!");
