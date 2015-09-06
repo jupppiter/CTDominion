@@ -96,6 +96,7 @@ namespace CTDominion
                 Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
                 Orb.SetOrbwalkingPoint(TEAM_POS);
             }
+                BuyManager.Buy();
 
         } //MoveBase
 
