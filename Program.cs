@@ -137,6 +137,45 @@ namespace CTDominion
             }
         }
     }
+
+ public static class HeadQuarters
+    {
+        public static Obj_HQ AllyHQ
+        {
+            get { return ObjectManager.Get<Obj_HQ>().FirstOrDefault(hq => hq.IsAlly); }
+        }
+        public static Obj_HQ EnemyHQ
+        {
+            get { return ObjectManager.Get<Obj_HQ>().FirstOrDefault(hq => hq.IsEnemy); }
+        }
+    }
+
+public static class Heroes
+    {
+        private static List<Obj_AI_Hero> _heroes;
+
+        public static Obj_AI_Hero Player = ObjectManager.Player;
+
+        /// <summary>
+        /// Ally Heroes, excluding the player
+        /// </summary>
+        public static List<Obj_AI_Hero> AllyHeroes
+        {
+            get { return _heroes.FindAll(h => h.IsValid<Obj_AI_Hero>() && h.IsAlly); }
+        }
+
+        public static List<Obj_AI_Hero> EnemyHeroes
+        {
+            get { return _heroes.FindAll(h => h.IsValid<Obj_AI_Hero>() && h.IsEnemy); }
+        }
+
+        public static void Load()
+        {
+            Player = ObjectManager.Player;
+            _heroes = ObjectManager.Get<Obj_AI_Hero>().Where(h=>!h.IsMe).ToList();
+        }
+    }
+
 //jupppiter.
 
 
