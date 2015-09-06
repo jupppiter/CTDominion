@@ -28,6 +28,7 @@ namespace CTDominion
             Config = new Menu("Dominion", "Dominion", true);
             Config.AddSubMenu(new Menu("Orbwalker", "Orbwalking"));
             Orb = new Orbwalking.Orbwalker(Config.SubMenu("Orbwalking"));
+            Config.AddItem(new MenuItem("autosharp.humanizer", "Humanize Movement by ").SetValue(new Slider(175, 125, 350)));
             Config.AddToMainMenu();
 
             Game.OnUpdate += Game_OnUpdate;
