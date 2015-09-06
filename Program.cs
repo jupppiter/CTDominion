@@ -142,7 +142,7 @@ namespace CTDominion
 
         public static Obj_AI_Turret ClosestEnemyTurret
         {
-            get { return EnemyTurrets.OrderBy(t => t.Distance(Heroes.Player)).FirstOrDefault(); }
+            get { return EnemyTurrets.OrderBy(t => t.Distance(Player)).FirstOrDefault(); }
         }
 
         public static void Load()
