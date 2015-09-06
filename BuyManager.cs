@@ -39,12 +39,11 @@ namespace CTDominion
                     break;
                 case "Garen":
                     ItemsToBuy.Add(new CItem(3047, 1000, false));  // Ninja Tabi[1]
-                    ItemsToBuy.Add(new CItem(1043, 1100, false)); // Recurve Bow
-                    ItemsToBuy.Add(new CItem(3091, 1500, false)); // Wit's End[2]
-                    ItemsToBuy.Add(new CItem(3153, 3000, false)); // BOTKR[3]
-                    ItemsToBuy.Add(new CItem(3022, 3300, false)); // Frozen Mallets[4]
-                    ItemsToBuy.Add(new CItem(3110, 2450, false)); // Frozen Heart[5]
-                    ItemsToBuy.Add(new CItem(3065, 1000, false)); // Spirit Visage
+                    ItemsToBuy.Add(new CItem(3071, 3000, false)); // The Black Cleaver[2]
+                    ItemsToBuy.Add(new CItem(3084, 2500, false)); // Overlord's Bloodmail[3]
+                    ItemsToBuy.Add(new CItem(3181, 2275, false)); // Sanguine Blade[4]
+                    ItemsToBuy.Add(new CItem(3035, 2300, false)); // Last Whisper[5]
+                    ItemsToBuy.Add(new CItem(3022, 3300, false)); // Frozen Mallets[6]
                     break;
                 case "Warwick":
                     ItemsToBuy.Add(new CItem(3047, 1000, false));  // Ninja Tabi[1]
