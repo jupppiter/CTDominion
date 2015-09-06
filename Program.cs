@@ -62,7 +62,7 @@ namespace CTDominion
                 }
                 else
                 {
-                    if (Player.CountEnemiesInRange(Range) < 3)
+                    if (Player.CountEnemiesInRange(Range) < 3 && !Turrets.EnemyTurrets.Any(t => t.Distance(Heroes.Player) < 950))
                     {
                         //LeagueSharp.Utils.DelayAction.Add(100, PathWalker.WalkAndFight);
                         LeagueSharp.Common.Utility.DelayAction.Add(500, PathWalker.WalkAndFight);
@@ -88,6 +88,7 @@ namespace CTDominion
         public static void MoveBase()
         {
             if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1200) < 1)
+//&& !Minions.EnemyMinions.Any(m => m.Distance(Heroes.Player) < 950)
             {
            	Player.Spellbook.CastSpell(SpellSlot.Recall);
             }
