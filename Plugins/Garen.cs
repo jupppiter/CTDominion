@@ -30,14 +30,7 @@ namespace CTDominion.Plugins
             var Target = TargetSelector.GetTarget(600, TargetSelector.DamageType.Magical);
 
             // Chase if not in range
-            bool AnySpellReady = Q.IsReady() || W.IsReady() || R.IsReady();
-
-            if (!AnySpellReady)
-            {
-                Player.IssueOrder(GameObjectOrder.MoveTo, TEAM_POS);
-                Orb.SetOrbwalkingPoint(TEAM_POS);
-            }
-            else if (Target != null && Target.IsValidTarget(400))
+            if (Target != null && Target.IsValid && Player.Distance(Target.Position) < 400)
             {
 
                 if (Q.IsReady() && Target.IsValidTarget(Q.Range))
@@ -48,7 +41,7 @@ namespace CTDominion.Plugins
                 {
                     W.Cast();
                 }
-                if (E.IsReady() && Target.IsValidTarget(W.Range))
+                if (E.IsReady() && Target.IsValidTarget(E.Range))
                 {
                     E.Cast(Target.Position);
                 }
