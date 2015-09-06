@@ -59,7 +59,7 @@ namespace CTDominion
                 }
                 else
                 {
-                    if (Player.CountEnemiesInRange(Range) < 3 && Player.UnderTurret(false))
+                    if (Player.CountEnemiesInRange(Range) < 3 && Player.UnderTurret(true))
                     {
                         LeagueSharp.Common.Utility.DelayAction.Add(500, PathWalker.WalkAndFight);
                     }
