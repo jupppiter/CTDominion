@@ -14,11 +14,6 @@ namespace CTDominion
     {
 
         public static Menu Config;
-
-        public static List<Obj_AI_Turret> AllTurrets;
-        public static List<Obj_AI_Turret> AllyTurrets;
-        public static List<Obj_AI_Turret> EnemyTurrets;
-
         static void Main(string[] args)
         {
             // Events
@@ -40,15 +35,6 @@ namespace CTDominion
 
         static void Game_OnUpdate(EventArgs args)
         {
-
-
-            //Turrets
-            AllTurrets = ObjectManager.Get<Obj_AI_Turret>().ToList();
-            AllyTurrets = AllTurrets.FindAll(turret => turret.IsAlly).ToList();
-            EnemyTurrets = AllTurrets.FindAll(turret => !turret.IsAlly).ToList();
-
-
-
             SkillManager.AutoLevelUp();
             if (Player.IsDead || Player.Distance(TEAM_POS) < 500)
                 BuyManager.Buy();
@@ -97,53 +83,6 @@ namespace CTDominion
 
 
         } //OnUpdate
-
-
-
-
-public static class Turrets
-    {
-        private static List<Obj_AI_Turret> _turrets;
-
-        public static List<Obj_AI_Turret> AllyTurrets
-        {
-            get { return _turrets.FindAll(t => t.IsValid<Obj_AI_Turret>() && !t.IsDead && t.IsAlly && !t.Name.ToLower().Contains("shrine")); }
-        }
-
-        public static List<Obj_AI_Turret> EnemyTurrets
-        {
-            get { return _turrets.FindAll(t => t.IsValid<Obj_AI_Turret>() && !t.IsDead && t.IsEnemy && !t.Name.ToLower().Contains("shrine")); }
-        }
-
-        public static Obj_AI_Turret ClosestEnemyTurret
-        {
-            get { return EnemyTurrets.OrderBy(t => t.Distance(Heroes.Player)).FirstOrDefault(); }
-        }
-
-        public static void Load()
-        {
-            _turrets = ObjectManager.Get<Obj_AI_Turret>().ToList();
-            Obj_AI_Turret.OnCreate += OnCreate;
-            Obj_AI_Turret.OnDelete += OnDelete;
-        }
-
-        private static void OnCreate(GameObject sender, EventArgs args)
-        {
-            if (sender.IsValid<Obj_AI_Turret>()) _turrets.Add((Obj_AI_Turret)sender);
-        }
-
-        private static void OnDelete(GameObject sender, EventArgs args)
-        {
-            var iList = _turrets.Where(turret => turret.NetworkId == sender.NetworkId);
-            foreach (var i in iList)
-            {
-                _turrets.Remove(i);
-            }
-        }
-    }
-
-
-
 
         static int Range = 900;
         static int MaxRange = 1200;
