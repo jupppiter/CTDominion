@@ -81,6 +81,64 @@ namespace CTDominion
 
         } //OnUpdate
 
+
+
+ public static class Minions
+    {
+        
+        private static List<Obj_AI_Minion> _minions;
+
+        public static List<Obj_AI_Minion> AllyMinions
+        {
+            get { return _minions.FindAll(t => t.IsValid<Obj_AI_Minion>() && !t.IsDead && t.IsAlly); }
+        }
+        public static List<Obj_AI_Minion> EnemyMinions
+        {
+            get { return _minions.FindAll(t => t.IsValid<Obj_AI_Minion>() && !t.IsDead && t.IsValidTarget()); }
+        }
+
+        public static void Load()
+        {
+            _minions = new List<Obj_AI_Minion>();
+            Obj_AI_Minion.OnCreate += OnCreate;
+            Obj_AI_Minion.OnDelete += OnDelete;
+        }
+
+        private static void OnDelete(GameObject sender, EventArgs args)
+        {
+            var iList = new List<Obj_AI_Minion>();
+            foreach (var minion in _minions)
+            {
+                if (minion.NetworkId == sender.NetworkId) iList.Add(minion);
+            }
+            foreach (var i in iList)
+            {
+                _minions.Remove(i);
+            }
+        }
+
+        private static void OnCreate(GameObject sender, EventArgs args)
+        {
+            var name = sender.Name.ToLower();
+            if (sender.IsValid<Obj_AI_Minion>() && !name.Contains("sru_") && !name.Contains("ward") && !name.Contains("ttn") && !name.Contains("tt_") && !name.Contains("trinket") && !name.Contains("teemo") && sender.Team != GameObjectTeam.Neutral) _minions.Add((Obj_AI_Minion)sender);
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         static int Range = 900;
         static int MaxRange = 1200;
         public static void MoveBase()
