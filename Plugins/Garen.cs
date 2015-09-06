@@ -52,7 +52,7 @@ namespace CTDominion.Plugins
                 {
                     E.Cast(Target.Position);
                 }
-                if (R.IsReady() && Target.IsValidTarget(R.Range))
+                if (R.IsReady() && R.IsInRange(Target))
                 {
                     R.Cast(Target);
                 }
