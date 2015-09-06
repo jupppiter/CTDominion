@@ -9,55 +9,91 @@ using LeagueSharp.Common;
 namespace CTDominion.Plugins
 {
     class Garen : Helper
-    {
-        public static Spell Q { get; private set; }
-        public static Spell W { get; private set; }
-        public static Spell E { get; private set; }
-        public static Spell R { get; private set; }
-
-        public static void InitSpells()
-        {
-            Q = new Spell(SpellSlot.Q);
-            W = new Spell(SpellSlot.W);
-            E = new Spell(SpellSlot.E, 165);
-            R = new Spell(SpellSlot.R, 400);
-        }
-
-        public static void FightHard()
-        {
-            // Initialize spells
-            var Target = TargetSelector.GetTarget(600, TargetSelector.DamageType.Magical);
 
 
-            if (Target != null && Target.IsValid)
-            {
-                if (Q.IsReady() && Q.IsInRange(Target))
-                {
-                    Q.Cast(Target);
+{
+		public Garen()
+		{
+			Q = new Spell(SpellSlot.Q);
+			W = new Spell(SpellSlot.W);
+			E = new Spell(SpellSlot.E, 165);
+			R = new Spell(SpellSlot.R, 400);
+		}
+
+		public override void OnAfterAttack(AttackableUnit unit, AttackableUnit target)
+		{
+			if (!unit.IsMe)
+			{
+				return;
+			}
+
+			var t = target as Obj_AI_Hero;
+			if (unit.IsMe && t != null)
+			{
+				if (Q.IsReady())
+				{
+					Q.Cast();
+					Orbwalking.ResetAutoAttackTimer();
+				}
+			}
+		}
+
+		public override void OnUpdate(EventArgs args)
+		{
+			KS();
+			if (ComboMode)
+			{
+				if (Q.IsReady() && Player.CountEnemiesInRange(R.Range) > 0)
+				{
+					Q.Cast();
+										Orbwalking.ResetAutoAttackTimer();
+
+					
                 }
-                if (W.IsReady() && Player.Health < 150 && Player.CountEnemiesInRange(700) > 0)
-                {
-                    W.Cast();
-                }
-                if (E.IsReady() && Player.Distance(Target.Position) < 300)
-                {
-                    E.Cast();
-                }
-                if (R.IsReady())
-                {
-                    R.Cast();
+				if (W.IsReady() && Player.CountEnemiesInRange(R.Range) > 0)
+				{
+					W.Cast();
+				}
+
+				if (E.IsReady() && Player.CountEnemiesInRange(R.Range) > 0)
+				{
+					E.Cast();
+					
                 }
             }
+        }
 
-            // Chase if not in range
-            if (Target != null && Target.IsValid && 
-                Player.Distance(Target.Position) > (Player.AttackRange + 50))
+	    // ReSharper disable once InconsistentNaming
+        public void KS()
+        {
+            foreach (
+                var target in
+                    ObjectManager.Get<Obj_AI_Hero>()
+                        .Where(x => Player.Distance(x) < 900 && x.IsValidTarget() && x.IsEnemy && !x.IsDead))
             {
-                //Player.IssueOrder(GameObjectOrder.MoveTo, Target.Position);
-                //Orb.SetOrbwalkingPoint(Target.Position);
-                Orbwalking.Orbwalk(Target, Target.Position);
+                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+                if (target != null)
+                {
+                    //R
+                    if (Player.Distance(target.ServerPosition) <= R.Range &&
+                        (Player.GetSpellDamage(target, SpellSlot.R)) > target.Health + 50)
+                    {
+                        if (R.CastCheck(Target, "ComboRKS"))
+                        {
+                            R.Cast(target);
+                            return;
+                        }
+                    }
+                }
             }
         }
 
+        public override void ComboMenu(Menu config)
+        {
+            config.AddBool("ComboQ", "Use Q", true);
+            config.AddBool("ComboW", "Use W", true);
+            config.AddBool("ComboE", "Use E", true);
+            config.AddBool("ComboRKS", "Use R KS", true);
+        }
     }
 }
