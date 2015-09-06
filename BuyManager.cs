@@ -29,11 +29,11 @@ namespace CTDominion
                     break;
                 case "Ryze":
                     ItemsToBuy.Add(new CItem(3020, 1100, false)); // Sorcer Bots [1]
-                    ItemsToBuy.Add(new CItem(3135, 2500, false)); // Void Staff [2]
-                    ItemsToBuy.Add(new CItem(3090, 2250, false)); // Wooglets (Hat)[3]
-                    ItemsToBuy.Add(new CItem(1058, 1250, false)); // Staf1250 [4]
-                    ItemsToBuy.Add(new CItem(3165, 2300, false)); // Morello [5]
-                    ItemsToBuy.Add(new CItem(3116, 3000, false)); // Rylais [6]
+                    ItemsToBuy.Add(new CItem(3003, 3000, false)); // Archangel's Staff [2]
+                    ItemsToBuy.Add(new CItem(3090, 2250, false)); // Wooglet's Witchcap [3]
+                    ItemsToBuy.Add(new CItem(3135, 2500, false)); // Void Staff [4]
+                    ItemsToBuy.Add(new CItem(1058, 1250, false)); // Staf1250 [5]
+                    ItemsToBuy.Add(new CItem(3165, 2300, false)); // Morello [6]
                     break;
                 case "Garen":
                     ItemsToBuy.Add(new CItem(3047, 1000, false));  // Ninja Tabi[1]
