@@ -15,6 +15,10 @@ namespace CTDominion
 
         public static Menu Config;
 
+        public static List<Obj_AI_Turret> AllTurrets;
+        public static List<Obj_AI_Turret> AllyTurrets;
+        public static List<Obj_AI_Turret> EnemyTurrets;
+
         static void Main(string[] args)
         {
             // Events
