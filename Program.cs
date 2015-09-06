@@ -86,7 +86,7 @@ namespace CTDominion
         public static void MoveBase()
 
         {
-            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(2000) < 1 && Minions.EnemyMinions.Count(m => m.Distance(Player) < 800))
+            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(2000) < 1 && EnemyMinions.Count(m => m.Distance(Player) < 800))
 //&& !Minions.EnemyMinions.Any(m => m.Distance(Heroes.Player) < 950)
             {
            	Player.Spellbook.CastSpell(SpellSlot.Recall);
