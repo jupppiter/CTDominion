@@ -178,8 +178,8 @@ namespace CTDominion
 //            if (Player.Distance(TEAM_POS) > 100 && Player.CountEnemiesInRange(1500) < 1 && Minions.EnemyMinions.Any(m => m.Distance(Player) < 100))
             if (Player.Distance(TEAM_POS) > 100 && !Minions.EnemyMinions.Any(m => m.Distance(Player) < 100))
 		// recall if no enemy near and minions
-		Game.PrintChat("minions...");
             {
+		Game.PrintChat("minions...");
            	Player.Spellbook.CastSpell(SpellSlot.Recall);
             }
             else
