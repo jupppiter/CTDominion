@@ -125,7 +125,6 @@ namespace CTDominion
 
     }
 
-
 public static class Turrets
     {
         private static List<Obj_AI_Turret> _turrets;
@@ -167,8 +166,7 @@ public static class Turrets
         }
     }
 
-
-public static class HealingBuffs
+    public static class HealingBuffs
     {
         private static List<GameObject> _healingBuffs;
         private static int LastUpdate = 0;
@@ -203,6 +201,23 @@ public static class HealingBuffs
             }
         }
 
+        private static void OnCreate(GameObject sender, EventArgs args)
+        {
+            if (sender.Name.Contains("healingBuff"))
+            {
+                _healingBuffs.Add(sender);
+            }
+        }
+
+        private static void OnDelete(GameObject sender, EventArgs args)
+        {
+            var iList = _healingBuffs.Where(buff => buff.NetworkId == sender.NetworkId);
+            foreach (var i in iList)
+            {
+                _healingBuffs.Remove(i);
+            }
+        }
+    }
 //jupppiter.
 
         static int Range = 900;
