@@ -5,95 +5,56 @@ using System.Text;
 using System.Threading.Tasks;
 using LeagueSharp;
 using LeagueSharp.Common;
+using SharpDX;
 
 namespace CTDominion.Plugins
 {
     class Garen : Helper
+    {
+        public static Spell Q { get; private set; }
+        public static Spell W { get; private set; }
+        public static Spell E { get; private set; }
+        public static Spell R { get; private set; }
 
-
-{
-		public Garen()
-		{
-			Q = new Spell(SpellSlot.Q);
-			W = new Spell(SpellSlot.W);
-			E = new Spell(SpellSlot.E, 165);
-			R = new Spell(SpellSlot.R, 400);
-		}
-
-		public override void OnAfterAttack(AttackableUnit unit, AttackableUnit target)
-		{
-			if (!unit.IsMe)
-			{
-				return;
-			}
-
-			var t = target as Obj_AI_Hero;
-			if (unit.IsMe && t != null)
-			{
-				if (Q.IsReady())
-				{
-					Q.Cast();
-					Orbwalking.ResetAutoAttackTimer();
-				}
-			}
-		}
-
-		public override void OnUpdate(EventArgs args)
-		{
-			KS();
-			if (ComboMode)
-			{
-				if (Q.IsReady() && Player.CountEnemiesInRange(R.Range) > 0)
-				{
-					Q.Cast();
-										Orbwalking.ResetAutoAttackTimer();
-
-					
-                }
-				if (W.IsReady() && Player.CountEnemiesInRange(R.Range) > 0)
-				{
-					W.Cast();
-				}
-
-				if (E.IsReady() && Player.CountEnemiesInRange(R.Range) > 0)
-				{
-					E.Cast();
-					
-                }
-            }
+        public static void InitSpells()
+        {
+            Q = new Spell(SpellSlot.Q);
+            W = new Spell(SpellSlot.W);
+            E = new Spell(SpellSlot.E, 165);
+            R = new Spell(SpellSlot.R, 400);
         }
 
-	    // ReSharper disable once InconsistentNaming
-        public void KS()
+        public static void FightHard()
         {
-            foreach (
-                var target in
-                    ObjectManager.Get<Obj_AI_Hero>()
-                        .Where(x => Player.Distance(x) < 900 && x.IsValidTarget() && x.IsEnemy && !x.IsDead))
+            // Initialize spells
+            var Target = TargetSelector.GetTarget(600, TargetSelector.DamageType.Magical);
+
+            // Chase if not in range
+            if (Target != null && Target.IsValid)
             {
-                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                if (target != null)
+
+                if (Target != null && W.IsReady())
                 {
-                    //R
-                    if (Player.Distance(target.ServerPosition) <= R.Range &&
-                        (Player.GetSpellDamage(target, SpellSlot.R)) > target.Health + 50)
-                    {
-                        if (R.CastCheck(Target, "ComboRKS"))
-                        {
-                            R.Cast(target);
-                            return;
-                        }
-                    }
+                    W.Cast();
+                }
+
+                if (Target != null && R.IsReady() && R.IsInRange(Target))
+                {
+                    R.Cast(Target);
+                }
+
+                if (Target != null && Q.IsReady() && Q.IsInRange(Target))
+                {
+                    Q.Cast(Target);
                 }
             }
-        }
+            else
+            {
+                Player.IssueOrder(GameObjectOrder.MoveTo, Target.Position);
+                Orb.SetOrbwalkingPoint(Target.Position);
+            }
 
-        public override void ComboMenu(Menu config)
-        {
-            config.AddBool("ComboQ", "Use Q", true);
-            config.AddBool("ComboW", "Use W", true);
-            config.AddBool("ComboE", "Use E", true);
-            config.AddBool("ComboRKS", "Use R KS", true);
-        }
+        } //Fight
+
     }
 }
