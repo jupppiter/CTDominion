@@ -16,6 +16,9 @@ namespace CTDominion
                 case "Ryze":
                     Ryze.FightHard();
                     break;
+                case "Garen":
+                    Ryze.FightHard();
+                    break;
                 case "Ahri":
                     Ahri.FightHard();
                     break;

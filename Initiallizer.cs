@@ -14,6 +14,7 @@ namespace CTDominion
             RandomWalk.Init();
             BuyManager.InitItems();
             Ryze.InitSpells();
+            Garen.InitSpells();
             Warwick.InitSpells();
             MasterYi.InitSpells();
             Ahri.InitSpells();

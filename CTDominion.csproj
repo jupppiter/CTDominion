@@ -64,6 +64,7 @@
     <Compile Include="Plugins\Annie.cs" />
     <Compile Include="Plugins\MasterYi.cs" />
     <Compile Include="Plugins\Ryze.cs" />
+    <Compile Include="Plugins\Garen.cs" />
     <Compile Include="Plugins\Warwick.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
