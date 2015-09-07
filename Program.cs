@@ -28,7 +28,7 @@ namespace CTDominion
             Config = new Menu("Dominion", "Dominion", true);
             Config.AddSubMenu(new Menu("Orbwalker", "Orbwalking"));
             Orb = new Orbwalking.Orbwalker(Config.SubMenu("Orbwalking"));
-            Config.AddItem(new MenuItem("autosharp.humanizer", "Run Away When HP is:").SetValue(new Slider(10, 30, 90)));
+            Config.AddItem(new MenuItem("autosharp.humanizer", "Run Away When HP is:").SetValue(new Slider(30, 30, 90)));
             Config.AddToMainMenu();
 
             Game.OnUpdate += Game_OnUpdate;
