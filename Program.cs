@@ -28,7 +28,7 @@ namespace CTDominion
             Config = new Menu("Dominion", "Dominion", true);
             Config.AddSubMenu(new Menu("Orbwalker", "Orbwalking"));
             Orb = new Orbwalking.Orbwalker(Config.SubMenu("Orbwalking"));
-            Config.AddItem(new MenuItem("autosharp.humanizer", "Humanize Movement by ").SetValue(new Slider(175, 125, 350)));
+            Config.AddItem(new MenuItem("autosharp.humanizer", "Run Away When HP is:").SetValue(new Slider(10, 30, 90)));
             Config.AddToMainMenu();
 
             Game.OnUpdate += Game_OnUpdate;
@@ -60,8 +60,8 @@ namespace CTDominion
                 }
                 else
                 {
-//                    if (Player.CountEnemiesInRange(Range) < 3 && Player.UnderTurret(true))
-                    if (Player.CountEnemiesInRange(Range) < 3 && Player.CountAlliesInRange(1200) > 1)
+//                    if (Player.CountEnemiesInRange(Range) < 3 && Player.UnderTurret(true)) && Player.CountAlliesInRange(1200) > 1
+                    if (Player.CountEnemiesInRange(Range) < 3)
                     {
                         LeagueSharp.Common.Utility.DelayAction.Add(500, PathWalker.WalkAndFight);
                     }
